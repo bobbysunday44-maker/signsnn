@@ -1,26 +1,193 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ─── NN Signs & Graphics Design System ─── */
+/* Palette: Rich Brown + Champagne Gold + Warm Nudes */
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Deep Browns */
+  --color-walnut: #2C1810;
+  --color-espresso: #3D2117;
+  --color-bark: #6B4226;
+  --color-sienna: #8B5E3C;
+
+  /* Warm Accents */
+  --color-caramel: #A67C52;
+  --color-gold: #C9A96E;
+  --color-gold-light: #D9BE8E;
+  --color-champagne: #D4B896;
+
+  /* Nude & Cream Tones */
+  --color-nude: #E5D0BC;
+  --color-cream: #F0E6D8;
+  --color-linen: #F5EDE4;
+  --color-ivory: #FEFAF5;
+
+  /* Text */
+  --color-charcoal: #1A0F0A;
+  --color-brown-text: #4A3728;
+  --color-muted: #8B7355;
+
+  /* Fonts */
+  --font-display: var(--font-playfair);
+  --font-heading: var(--font-outfit);
+  --font-body: var(--font-dm-sans);
+
+  /* Animations */
+  --animate-fade-up: fade-up 0.7s ease-out forwards;
+  --animate-fade-in: fade-in 0.6s ease-out forwards;
+  --animate-slide-right: slide-right 0.7s ease-out forwards;
+  --animate-slide-left: slide-left 0.7s ease-out forwards;
+  --animate-scale-in: scale-in 0.5s ease-out forwards;
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-pulse-gold: pulse-gold 3s ease-in-out infinite;
+  --animate-shimmer: shimmer 2s ease-in-out infinite;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-right {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slide-left {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes pulse-gold {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201, 169, 110, 0.4); }
+  50% { box-shadow: 0 0 20px 4px rgba(201, 169, 110, 0.15); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* ─── Base ─── */
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #FEFAF5;
+  color: #1A0F0A;
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: #C9A96E;
+  color: #1A0F0A;
+}
+
+/* ─── Scrollbar ─── */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F5EDE4;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D4B896;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #C9A96E;
+}
+
+/* ─── Utilities ─── */
+
+.section-padding {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+@media (min-width: 768px) {
+  .section-padding {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+}
+
+.container-narrow {
+  max-width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .container-narrow {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-narrow {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}
+
+/* Gold line accent */
+.gold-line {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, #C9A96E, #D4B896);
+}
+
+/* Gold underline hover */
+.gold-underline {
+  position: relative;
+}
+.gold-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #C9A96E;
+  transition: width 0.3s ease;
+}
+.gold-underline:hover::after {
+  width: 100%;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
