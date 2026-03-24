@@ -26,13 +26,11 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    setMobileOpen(false);
-  }, [pathname]);
-
-  useEffect(() => {
     document.body.style.overflow = mobileOpen ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
   }, [mobileOpen]);
+
+  const closeMobile = () => setMobileOpen(false);
 
   return (
     <>
@@ -139,6 +137,7 @@ export default function Navbar() {
                   >
                     <Link
                       href={link.href}
+                      onClick={closeMobile}
                       className={`text-2xl font-heading font-medium tracking-wide transition-colors ${
                         active ? 'text-gold' : 'text-ivory/80 hover:text-gold'
                       }`}
@@ -163,6 +162,7 @@ export default function Navbar() {
                 </a>
                 <Link
                   href="/contact"
+                  onClick={closeMobile}
                   className="px-8 py-3 bg-gold text-walnut font-heading font-semibold rounded tracking-wide"
                 >
                   Get a Quote
